@@ -1,0 +1,20 @@
+{
+  "name": "truck-orm",
+  "version": "0.0.1",
+  "description": "An ORM for the front end.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://alexblunck@github.com/alexblunck/truck-orm.git"
+  },
+  "keywords": ["orm", "browser"],
+  "author": "Alexander Blunck",
+  "license": "LICENSE",
+  "bugs": {
+    "url": "https://github.com/alexblunck/truck-orm/issues"
+  },
+  "homepage": "https://github.com/alexblunck/truck-orm#readme"
+}
