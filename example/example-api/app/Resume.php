@@ -6,9 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Resume extends Model
 {
-    protected $fillable = ['name', 'email'];
+    protected $fillable = ['name', 'email', 'options', 'is_sent'];
 
     protected $with = ['sections'];
+
+    protected $casts = ['options' => 'array', 'is_sent' => 'boolean'];
 
     public function sections()
     {

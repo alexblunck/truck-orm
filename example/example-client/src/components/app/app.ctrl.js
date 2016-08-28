@@ -18,10 +18,20 @@ const ResumeSection = Truck({
 
 const Resume = Truck({
     name: 'resume',
-    fields: ['name', 'email'],
+    fields: ['name', 'email', 'options', 'is_sent'],
     hasMany: {
         sections: {
             model: ResumeSection
+        }
+    },
+    dynamic: {
+        firstName: function () {
+            return this.name.split(' ')[0]
+        }
+    },
+    methods: {
+        foo: function () {
+            console.log('foo')
         }
     },
     api: api
@@ -37,10 +47,8 @@ export default function AppCtrl () {
         // ------------------------------------------------------------
         // Create & save model
         // ------------------------------------------------------------
-        const section = new ResumeSection({ name: 'Languages' })
-        // const section = new ResumeSection()
-        // section.$save()
-        console.log(section)
+        const resume = new Resume({ name: 'Alexander Blunck', email: 'alex@blunck.xyz' })
+        console.log(resume)
 
         // ------------------------------------------------------------
         // Retrieve single model

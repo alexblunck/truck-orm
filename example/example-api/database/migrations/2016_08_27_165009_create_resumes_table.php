@@ -16,6 +16,8 @@ class CreateResumesTable extends Migration
             $table->timestamps();
             $table->string('name')->nullable();
             $table->string('email')->nullable();
+            $table->json('options')->nullable();
+            $table->boolean('is_sent')->default(false);
         });
     }
 
