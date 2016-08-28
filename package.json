@@ -58,5 +58,8 @@
     "lodash": "4.15.0",
     "shortid": "2.2.6",
     "url-join": "1.1.0"
+  },
+  "browserify": {
+    "transform": [["babelify", { "presets": ["es2015"] }]]
   }
 }
