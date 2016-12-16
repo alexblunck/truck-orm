@@ -4,6 +4,7 @@
  */
 
 import { each } from 'lodash'
+import TruckConfig from './TruckConfig'
 import Model from './Model'
 
 export default function ModelFactory (options) {
@@ -39,7 +40,7 @@ export default function ModelFactory (options) {
          * @return {any}
          */
         static _option(key) {
-            return this.options[key]
+            return this.options[key] || TruckConfig.get(key)
         }
 
         /**
