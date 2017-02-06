@@ -14,7 +14,7 @@ const defaultConfig = {
     }
 }
 
-export default class NetworkRequest {
+module.exports = class NetworkRequest {
 
     /**
      * Get $http angular service from angular app

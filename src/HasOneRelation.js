@@ -3,7 +3,7 @@
  * HasOneRelation
  */
 
-export default class HasOneRelation {
+module.exports = class HasOneRelation {
 
     /**
      * Create new has one relation instance.

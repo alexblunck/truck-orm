@@ -2,10 +2,10 @@
  * index
  */
 
-import Truck from './src/Truck'
-import TruckConfig from './src/TruckConfig'
+const Truck = require('./src/Truck')
+const TruckConfig =  require('./src/TruckConfig')
 
-export {
+module.exports = {
     Truck,
     TruckConfig
 }

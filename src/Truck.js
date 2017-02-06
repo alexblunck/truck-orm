@@ -2,7 +2,7 @@
  * Truck
  */
 
-import ModelFactory from './ModelFactory'
+const ModelFactory = require('./ModelFactory')
 
 /**
  * Default Options.
@@ -25,7 +25,7 @@ const defaultOptions = {
     events: {}
 }
 
-export default function Truck (options) {
+module.exports = function Truck (options) {
 
     // Build options
     options = Object.assign({}, defaultOptions, options)

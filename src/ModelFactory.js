@@ -3,11 +3,11 @@
  * ModelFactory
  */
 
-import { each } from 'lodash'
-import TruckConfig from './TruckConfig'
-import Model from './Model'
+const { each } = require('lodash')
+const TruckConfig = require('./TruckConfig')
+const Model = require('./Model')
 
-export default function ModelFactory (options) {
+module.exports = function ModelFactory (options) {
 
     class ModelSubclass extends Model {
 

@@ -3,9 +3,9 @@
  * HasManyRelation
  */
 
-import ModelCollection from './ModelCollection'
+const ModelCollection = require('./ModelCollection')
 
-export default class HasManyRelation {
+module.exports = class HasManyRelation {
 
     /**
      * Create new has many relation instance.

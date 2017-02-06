@@ -3,17 +3,17 @@
  * Model
  */
 
-import { cloneDeep, each, isEqual, isFunction, isUndefined, keys } from 'lodash'
-import moment from 'moment'
-import shortid from 'shortid'
-import urljoin from 'url-join'
-import Util from './Util'
-import NetworkRequest from './NetworkRequest'
-import ModelCollection from './ModelCollection'
-import HasManyRelation from './HasManyRelation'
-import HasOneRelation from './HasOneRelation'
+const { cloneDeep, each, isEqual, isFunction, isUndefined, keys } = require('lodash')
+const moment = require('moment')
+const shortid = require('shortid')
+const urljoin = require('url-join')
+const Util = require('./Util')
+const NetworkRequest = require('./NetworkRequest')
+const ModelCollection = require('./ModelCollection')
+const HasManyRelation = require('./HasManyRelation')
+const HasOneRelation = require('./HasOneRelation')
 
-export default class Model {
+module.exports = class Model {
 
     /**
      * Create Model instance

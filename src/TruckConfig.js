@@ -30,4 +30,4 @@ class TruckConfig {
     }
 }
 
-export default new TruckConfig()
+module.exports = new TruckConfig()

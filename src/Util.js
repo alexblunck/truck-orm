@@ -3,7 +3,7 @@
  * Util
  */
 
-export default class Util {
+module.exports = class Util {
 
     /**
      * Log.

@@ -3,10 +3,10 @@
  * ModelCollection
  */
 
-import { findIndex, find, map } from 'lodash'
-import Util from './Util'
+const { findIndex, find, map } = require('lodash')
+const Util = require('./Util')
 
-export default class ModelCollection {
+module.exports = class ModelCollection {
 
     /**
      * Create new model collection instance.
