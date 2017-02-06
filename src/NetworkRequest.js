@@ -3,8 +3,6 @@
  * NetworkRequest
  */
 
-import { defaults } from 'lodash'
-
 /**
  * Default $http config.
  *
@@ -120,7 +118,7 @@ export default class NetworkRequest {
      * @return {object}
      */
     static buildConfig(config = {}) {
-        return defaults(config, defaultConfig)
+        return Object.assign({}, defaultConfig, config)
     }
 
 }
