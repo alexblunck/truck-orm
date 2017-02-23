@@ -34,7 +34,7 @@ module.exports = class Model {
     /**
      * Retrieve model with a specific id.
      *
-     * @param  {integer} id
+     * @param  {integer} [id]
      *
      * @return {Promise} Resolves to Model instance
      */
