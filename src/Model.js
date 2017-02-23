@@ -331,7 +331,10 @@ module.exports = class Model {
             this[key] = new HasOneRelation({
                 data: data[key],
                 modelClass: value.model,
-                belongsTo: this
+                belongsTo: this,
+                options: {
+                    dropParentApiPath: value.dropParentApiPath
+                }
             })
         })
     }
