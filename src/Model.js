@@ -124,15 +124,24 @@ module.exports = class Model {
     /**
      * Delete the model instance.
      *
+     * @param  {Boolean} options.optimistic - Delete from possible relation
+     *                                        before making network request
+     *
      * @return {Promise} Resolves to model instance
      */
-    $delete() {
+    $delete({ optimistic = false } = {}) {
         const url = this._apiUrl()
+
+        if (optimistic) {
+            this._deleteFromRelation()
+        }
 
         return NetworkRequest.$delete(url, this.isOffline())
             .then(data => {
                 // Delete from possible relation
-                this._deleteFromRelation()
+                if (!optimistic) {
+                    this._deleteFromRelation()
+                }
 
                 this._callEventHandler('didDelete')
 
