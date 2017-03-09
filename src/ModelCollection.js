@@ -164,7 +164,7 @@ module.exports = class ModelCollection {
         return model.$save({ includeRelations })
             .then(() => {
                 this.items.push(model)
-                return this
+                return model
             })
     }
 
