@@ -98,8 +98,8 @@ module.exports = class Model {
     /**
      * Update a single field on the model instance.
      *
-     * @param  {string} key  - Key of property / field to update
-     * @param  {any} [value] - Updated value
+     * @param  {string}  key    - Key of property / field to update
+     * @param  {any}    [value] - Updated value
      *
      * @return {Promise} Resolves to Model instance
      */
