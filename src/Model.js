@@ -108,12 +108,12 @@ module.exports = class Model {
 
         const data = {
             key,
-            value: value || this[key]
+            value: !isUndefined(value) ? value : this[key]
         }
 
         return NetworkRequest.$put(url, data, this.isOffline())
             .then(data => {
-                if (value) {
+                if (!isUndefined(value)) {
                     this[key] = data[key]
                 }
 
