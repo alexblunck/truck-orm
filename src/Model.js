@@ -3,7 +3,7 @@
  * Model
  */
 
-const { cloneDeep, each, isEqual, isFunction, isUndefined, keys } = require('lodash')
+const { cloneDeep, each, isArray, isEqual, isFunction, isPlainObject, isUndefined, keys } = require('lodash')
 const moment = require('moment')
 const shortid = require('shortid')
 const urljoin = require('url-join')
@@ -90,6 +90,35 @@ module.exports = class Model {
                 if (method === '$put' && this._truck.collection) {
                     this._truck.collection.replace(this)
                 }
+
+                return this
+            })
+    }
+
+    /**
+     * Update multiple fields on the model instance.
+     *
+     * @param  {Object|array} fields
+     *
+     * @return {Promise} Resolves to model instance
+     */
+    $update(fields) {
+        const url = this._apiUrl()
+        let data = {}
+
+        if (isPlainObject(fields)) {
+            data = fields
+        } else if (isArray(fields)) {
+            each(fields, field => {
+                data[field] = this[field]
+            })
+        }
+
+        return NetworkRequest.$put(url, data, this.isOffline())
+            .then(res => {
+                each(data, (value, key) => {
+                    this[key] = res[key]
+                })
 
                 return this
             })
