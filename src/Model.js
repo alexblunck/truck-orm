@@ -115,10 +115,8 @@ module.exports = class Model {
         }
 
         return NetworkRequest.$put(url, data, this.isOffline())
-            .then(res => {
-                each(data, (value, key) => {
-                    this[key] = res[key]
-                })
+            .then(data => {
+                this._setData(data)
 
                 return this
             })
