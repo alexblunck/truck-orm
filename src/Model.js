@@ -161,6 +161,7 @@ module.exports = class Model {
 
         if (optimistic) {
             this._deleteFromRelation()
+            this._callEventHandler('didDelete')
         }
 
         return NetworkRequest.$delete(url, this.isOffline())
@@ -168,9 +169,8 @@ module.exports = class Model {
                 // Delete from possible relation
                 if (!optimistic) {
                     this._deleteFromRelation()
+                    this._callEventHandler('didDelete')
                 }
-
-                this._callEventHandler('didDelete')
 
                 return this
             })
