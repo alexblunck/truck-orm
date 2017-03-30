@@ -407,11 +407,14 @@ module.exports = class Model {
         const o = this._option.bind(this)
         let path = ''
 
-        // Relation
-        if (this._truck.relation) {
-            // Check for dropParentApiPath relation option
-            if (!this._truck.relation.options.dropParentApiPath) {
-                path = this._truck.relation.belongsTo._apiPath()
+        // Check for dropParentApiPath option on this model
+        if (!o('dropParentApiPath')) {
+            // Relation
+            if (this._truck.relation) {
+                // Check for dropParentApiPath relation option
+                if (!this._truck.relation.options.dropParentApiPath) {
+                    path = this._truck.relation.belongsTo._apiPath()
+                }
             }
         }
 

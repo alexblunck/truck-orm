@@ -14,6 +14,7 @@ const defaultOptions = {
     api: null,
     key: 'id',
     dropKey: false,
+    dropParentApiPath: false,
     fields: [],
     dates: ['created_at', 'updated_at'],
     defaults: {},
