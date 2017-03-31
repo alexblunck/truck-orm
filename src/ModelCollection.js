@@ -121,13 +121,15 @@ module.exports = class ModelCollection {
      * collection with another one.
      *
      * @param  {Model}  model
-     * @param  {string} key - Key used to determine what to replace
+     * @param  {string} [key]   - Key used to determine what to replace
+     * @param  {string} [value] - Value that key is matched with
      */
-    replace(model, key) {
+    replace(model, key, value) {
         key = key || this.modelClass._option('key')
+        value = value || model[key]
 
         const predicate = {}
-        predicate[key] = model[key]
+        predicate[key] = value
 
         const index = findIndex(this.items, predicate)
 
