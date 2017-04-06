@@ -81,6 +81,16 @@ module.exports = class ModelCollection {
     }
 
     /**
+     * Like findWhere, but returns true if item
+     * given a predicate exists.
+     *
+     * @return {Boolean}
+     */
+    existsWhere() {
+        return this.findWhere(...arguments) !== undefined
+    }
+
+    /**
      * Look up item index by predicate.
      *
      * @param  {string} key

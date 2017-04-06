@@ -42,6 +42,10 @@ module.exports = class HasManyRelation {
         return this.collection.findWhere(...arguments)
     }
 
+    existsWhere() {
+        return this.collection.existsWhere(...arguments)
+    }
+
     findIndex() {
         return this.collection.findIndex(...arguments)
     }
