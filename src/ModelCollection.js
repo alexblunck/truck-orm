@@ -49,7 +49,7 @@ module.exports = class ModelCollection {
      *
      * @param  {any} keyValue
      *
-     * @return {Model}
+     * @return {Model|void}
      */
     find(keyValue) {
         return this.findWhere(this.modelClass.options.key, keyValue)
