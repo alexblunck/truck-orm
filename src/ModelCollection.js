@@ -3,7 +3,7 @@
  * ModelCollection
  */
 
-const { findIndex, find, map } = require('lodash')
+const { findIndex, find, isString, map } = require('lodash')
 const Util = require('./Util')
 
 module.exports = class ModelCollection {
@@ -58,14 +58,24 @@ module.exports = class ModelCollection {
     /**
      * Look up item by predicate.
      *
-     * @param  {string} key
-     * @param  {any} value
+     * @param  {string}     key
+     * @param  {any}        value
+     * @param  {Boolean}    ignoreCase
      *
-     * @return {Model}
+     * @return {Model|void}
      */
-    findWhere(key, value) {
-        const predicate = {}
+    findWhere(key, value, ignoreCase = false) {
+        let predicate = {}
         predicate[key] = value
+
+        if (ignoreCase) {
+            predicate = item => {
+                let cmp = item[key]
+                cmp = isString(cmp) ? cmp.toLowerCase() : cmp
+                value = isString(value) ? value.toLowerCase() : value
+                return value === cmp
+            }
+        }
 
         return find(this.items, predicate)
     }
