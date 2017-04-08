@@ -162,7 +162,16 @@ module.exports = class ModelCollection {
      * @return {boolean}
      */
     isEmpty() {
-        return this.items.length === 0
+        return this.count() === 0
+    }
+
+    /**
+     * Return number of items in collection.
+     *
+     * @return {Number}
+     */
+    count() {
+        return this.items.length
     }
 
     /**

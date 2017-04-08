@@ -66,6 +66,10 @@ module.exports = class HasManyRelation {
         return this.collection.isEmpty(...arguments)
     }
 
+    count() {
+        return this.collection.count(...arguments)
+    }
+
     $add() {
         return this.collection.$add(...arguments)
     }
