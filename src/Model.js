@@ -346,7 +346,7 @@ module.exports = class Model {
 
         // Dates
         this._option('dates').forEach(field => {
-            const date = data[field] ? moment(data[field]).toDate() : null
+            const date = data[field] ? moment.utc(data[field]).toDate() : null
             this[field] = date
         })
 
