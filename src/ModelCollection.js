@@ -3,7 +3,7 @@
  * ModelCollection
  */
 
-const { findIndex, find, isString, map } = require('lodash')
+const { findIndex, find, get, isString, map } = require('lodash')
 const Util = require('./Util')
 
 module.exports = class ModelCollection {
@@ -70,7 +70,7 @@ module.exports = class ModelCollection {
 
         if (ignoreCase) {
             predicate = item => {
-                let cmp = item[key]
+                let cmp = get(item, key)
                 cmp = isString(cmp) ? cmp.toLowerCase() : cmp
                 value = isString(value) ? value.toLowerCase() : value
                 return value === cmp
