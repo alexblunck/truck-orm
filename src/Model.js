@@ -76,14 +76,16 @@ module.exports = class Model {
      * Save the model instance. If it has a key make
      * a put request, otherwise a post request.
      *
-     * @param {boolean} includeRelations - Include relations with request data
+     * @param  {Boolean} options.includeRelations - Include relations with request body
+     * @param  {Object}  options.append           - Additional data to append to request bod
      *
      * @return {Promise} Resolves to model instance
      */
-    $save({ includeRelations = false } = {}) {
+    $save({ includeRelations = false, append = {} } = {}) {
         const url = this._apiUrl()
         const method = this[this._option('key')] ? '$put' : '$post'
-        const data = this.toObject({ includeRelations })
+        const modelObject = this.toObject({ includeRelations })
+        const data = Object.assign(modelObject, append)
 
         return NetworkRequest[method](url, data, this.isOffline())
             .then(data => {
@@ -128,18 +130,19 @@ module.exports = class Model {
     /**
      * Update a single field on the model instance.
      *
-     * @param  {string}  key    - Key of property / field to update
-     * @param  {any}    [value] - Updated value
+     * @param  {String}  key     - Key of property / field to update
+     * @param  {Any}    [value]  - Updated value
+     * @param  {Object} [append] - Additional data to append to request body
      *
      * @return {Promise} Resolves to Model instance
      */
-    $sync(key, value) {
+    $sync(key, value, append = {}) {
         const url = urljoin(this._apiUrl(), 'sync')
 
-        const data = {
+        const data = Object.assign({
             key,
             value: !isUndefined(value) ? value : this[key]
-        }
+        }, append)
 
         return NetworkRequest.$put(url, data, this.isOffline())
             .then(data => {
