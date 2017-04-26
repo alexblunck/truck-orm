@@ -329,9 +329,14 @@ module.exports = class Model {
     /**
      * Set data properties on instance root.
      *
-     * @param {object} data
+     * @param {Object|Model} data
      */
     _setData(data = {}) {
+        // If data is a model instance, convert to object first
+        if (data instanceof Model) {
+            data = data.toObject()
+        }
+
         // Key
         this[this._option('key')] = data[this._option('key')] || null
 
