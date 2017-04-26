@@ -345,7 +345,11 @@ module.exports = class Model {
             const fieldData = data[field]
 
             if (!this._key()) {
-                this[field] = fieldData || this._defaultFieldValue(field)
+                if (fieldData === undefined || fieldData === null) {
+                    this[field] = this._defaultFieldValue(field)
+                } else {
+                    this[field] = fieldData
+                }
             } else {
                 if (fieldData || fieldData === false) {
                     this[field] = fieldData
