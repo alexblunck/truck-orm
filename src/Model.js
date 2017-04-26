@@ -29,6 +29,9 @@ module.exports = class Model {
         }, meta)
 
         this._setData(data)
+
+        // Call "didBoot" event handler
+        this._callEventHandler('didBoot')
     }
 
     /**
