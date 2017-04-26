@@ -175,14 +175,15 @@ module.exports = class ModelCollection {
     }
 
     /**
-     * Add new model instance to collection.
+     * Add a new model instance to collection.
      *
-     * @param  {Model} model - Has to be same class as other items
-     * @param  {boolean} includeRelations - Include relations with request data
+     * @param  {Model}   model                    - Has to be same class as other items
+     * @param  {Boolean} options.includeRelations - Include relations with request body
+     * @param  {Object}  options.append           - Additional data to append to request body
      *
      * @return {Promise}
      */
-    $add(model, { includeRelations = false } = {}) {
+    $add(model, { includeRelations = false, append = {} } = {}) {
         if (!(model instanceof this.modelClass)) {
             Util.log('ModelCollection', '$add', 'You can only add models of same type to collection.')
             return
@@ -192,7 +193,7 @@ module.exports = class ModelCollection {
         model._truck.collection = this
         model._truck.offline = this.belongsTo ? this.belongsTo._truck.offline : false
 
-        return model.$save({ includeRelations })
+        return model.$save({ includeRelations, append })
             .then(() => {
                 this.items.push(model)
                 return model
