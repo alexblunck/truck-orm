@@ -69,6 +69,10 @@ module.exports = class HasOneRelation {
         return this.model.$update(...arguments)
     }
 
+    $post() {
+        return this.model.$post(...arguments)
+    }
+
     $sync() {
         return this.model.$sync(...arguments)
     }
