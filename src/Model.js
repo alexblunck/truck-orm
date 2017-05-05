@@ -171,7 +171,7 @@ module.exports = class Model {
         }
 
         return NetworkRequest.$delete(url, this.isOffline())
-            .then(data => {
+            .then(() => {
                 // Delete from possible relation
                 if (!optimistic) {
                     this._deleteFromRelation()
