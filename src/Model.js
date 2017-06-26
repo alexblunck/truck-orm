@@ -73,6 +73,21 @@ module.exports = class Model {
     }
 
     /**
+     * Create a new collection with optional
+     * data.
+     *
+     * @param  {Array}  [data] - Data to initialize collection with
+     *
+     * @return {ModelCollection}
+     */
+    static collect(data = []) {
+        return new ModelCollection({
+            data: data,
+            modelClass: this
+        })
+    }
+
+    /**
      * Save the model instance. If it has a key make
      * a put request, otherwise a post request.
      *
