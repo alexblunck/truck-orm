@@ -163,6 +163,26 @@ module.exports = class Model {
     }
 
     /**
+     * Make put request and set data from response
+     * body.
+     *
+     * @param  {String} ext  - Path to append to url
+     * @param  {Object} data - Request body data
+     *
+     * @return {Promise} Resolves to model instance
+     */
+    $put(ext, data) {
+        const url = urljoin(this._apiUrl(), ext)
+
+        return NetworkRequest.$put(url, data, this.isOffline())
+            .then(data => {
+                this._setData(data)
+
+                return this
+            })
+    }
+
+    /**
      * Update a single field on the model instance.
      *
      * @param  {String}  key     - Key of property / field to update
