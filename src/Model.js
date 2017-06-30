@@ -143,19 +143,23 @@ module.exports = class Model {
     }
 
     /**
-     * Make post request and set data from response
-     * body.
+     * Make post request and set data from response body.
      *
-     * @param  {String} ext  - Path to append to url
-     * @param  {Object} data - Request body data
+     * @param  {String}  ext         - Path to append to url
+     * @param  {Object}  [data]      - Request body data
+     * @param  {Boolean} [immutable] - Don't mutate model with response data
      *
      * @return {Promise} Resolves to model instance
      */
-    $post(ext, data) {
+    $post(ext, data, immutable = false) {
         const url = urljoin(this._apiUrl(), ext)
 
         return NetworkRequest.$post(url, data, this.isOffline())
             .then(data => {
+                if (immutable) {
+                    return data
+                }
+
                 this._setData(data)
 
                 return this
@@ -163,19 +167,23 @@ module.exports = class Model {
     }
 
     /**
-     * Make put request and set data from response
-     * body.
+     * Make put request and set data from response body.
      *
-     * @param  {String} ext  - Path to append to url
-     * @param  {Object} data - Request body data
+     * @param  {String}  ext         - Path to append to url
+     * @param  {Object}  [data]      - Request body data
+     * @param  {Boolean} [immutable] - Don't mutate model with response data
      *
      * @return {Promise} Resolves to model instance
      */
-    $put(ext, data) {
+    $put(ext, data, immutable = false) {
         const url = urljoin(this._apiUrl(), ext)
 
         return NetworkRequest.$put(url, data, this.isOffline())
             .then(data => {
+                if (immutable) {
+                    return data
+                }
+
                 this._setData(data)
 
                 return this
