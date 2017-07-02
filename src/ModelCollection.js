@@ -3,7 +3,7 @@
  * ModelCollection
  */
 
-const { findIndex, find, get, isString, map } = require('lodash')
+const { findIndex, find, get, isArray, isString, map } = require('lodash')
 const Util = require('./Util')
 
 module.exports = class ModelCollection {
@@ -249,6 +249,10 @@ module.exports = class ModelCollection {
      * @param {array} data
      */
     _setData(data = []) {
+        if (!isArray(data)) {
+            throw new Error('Truck.ModelCollection@_setData: Data needs to be an array!')
+        }
+
         this.items = []
 
         data.forEach(modelData => {
