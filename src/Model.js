@@ -414,7 +414,7 @@ module.exports = class Model {
                     this[field] = fieldData
                 }
             } else {
-                if (fieldData || fieldData === false) {
+                if (fieldData || fieldData === false || fieldData === 0) {
                     this[field] = fieldData
                 } else {
                     this[field] = null
