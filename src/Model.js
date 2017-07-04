@@ -92,7 +92,7 @@ module.exports = class Model {
      * a put request, otherwise a post request.
      *
      * @param  {Boolean} options.includeRelations - Include relations with request body
-     * @param  {Object}  options.append           - Additional data to append to request bod
+     * @param  {Object}  options.append           - Additional data to append to request body
      *
      * @return {Promise} Resolves to model instance
      */
