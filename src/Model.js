@@ -3,8 +3,7 @@
  * Model
  */
 
-const { cloneDeep, each, isArray, isEqual, isFunction, isPlainObject, isUndefined, keys } = require('lodash')
-const moment = require('moment')
+const { cloneDeep, each, isArray, isDate, isEqual, isFunction, isPlainObject, isString, isUndefined, keys } = require('lodash')
 const shortid = require('shortid')
 const urljoin = require('url-join')
 const Util = require('./Util')
@@ -424,7 +423,32 @@ module.exports = class Model {
 
         // Dates
         this._option('dates').forEach(field => {
-            const date = data[field] ? moment.utc(data[field]).toDate() : null
+            const value = data[field]
+            let date = null
+
+            // Don't manipulate existing date
+            if (isDate(value)) {
+                date = value
+            }
+
+            // Convert string to date
+            if (isString(value)) {
+                date = value.replace(/-/g, '/')
+                date = new Date(value)
+
+                // Assume date to be in UTC timezone
+                date = new Date(
+                    Date.UTC(
+                        date.getFullYear(),
+                        date.getMonth(),
+                        date.getDate(),
+                        date.getHours(),
+                        date.getMinutes(),
+                        date.getSeconds()
+                    )
+                )
+            }
+
             this[field] = date
         })
 
