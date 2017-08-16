@@ -423,7 +423,7 @@ module.exports = class Model {
 
         // Dates
         this._option('dates').forEach(field => {
-            const value = data[field]
+            let value = data[field]
             let date = null
 
             // Don't manipulate existing date
@@ -433,7 +433,7 @@ module.exports = class Model {
 
             // Convert string to date
             if (isString(value)) {
-                date = value.replace(/-/g, '/')
+                value = value.replace(/-/g, '/')
                 date = new Date(value)
 
                 // Assume date to be in UTC timezone
