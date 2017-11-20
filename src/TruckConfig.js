@@ -11,8 +11,8 @@ class TruckConfig {
     /**
      * Set option.
      *
-     * @param {string} key
-     * @param {any} value
+     * @param {String} key
+     * @param {Any}    value
      */
     set(key, value) {
         this.options[key] = value
@@ -21,9 +21,9 @@ class TruckConfig {
     /**
      * Get option for key.
      *
-     * @param  {string} key
+     * @param  {String} key
      *
-     * @return {any}
+     * @return {Any}
      */
     get(key) {
         return this.options[key]

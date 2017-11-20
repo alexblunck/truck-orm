@@ -6,11 +6,11 @@
 /**
  * Default $http config.
  *
- * @type {object}
+ * @type {Object}
  */
 const defaultConfig = {
     headers: {
-        'X-Requested-With': 'XMLHttpRequest'
+        'Accept': 'application/json'
     }
 }
 
@@ -39,7 +39,7 @@ module.exports = class NetworkRequest {
     /**
      * Make GET request.
      *
-     * @param  {string} url
+     * @param  {String} url
      *
      * @return {Promise}
      */
@@ -53,9 +53,9 @@ module.exports = class NetworkRequest {
     /**
      * Make POST request.
      *
-     * @param  {string} url
-     * @param  {object} data
-     * @param  {boolean} [offline]
+     * @param  {String}  url
+     * @param  {Object}  data
+     * @param  {Boolean} [offline]
      *
      * @return {Promise}
      */
@@ -73,9 +73,9 @@ module.exports = class NetworkRequest {
     /**
      * Make PUT request.
      *
-     * @param  {string} url
-     * @param  {object} data
-     * @param  {boolean} [offline]
+     * @param  {String}  url
+     * @param  {Object}  data
+     * @param  {Boolean} [offline]
      *
      * @return {Promise}
      */
@@ -93,8 +93,8 @@ module.exports = class NetworkRequest {
     /**
      * Make PUT request.
      *
-     * @param  {string} url
-     * @param  {boolean} [offline]
+     * @param  {String}  url
+     * @param  {Boolean} [offline]
      *
      * @return {Promise}
      */
@@ -113,9 +113,9 @@ module.exports = class NetworkRequest {
      * Build $http config by combining passed in
      * object with default values.
      *
-     * @param  {object} [config]
+     * @param  {Object} [config]
      *
-     * @return {object}
+     * @return {Object}
      */
     static buildConfig(config = {}) {
         return Object.assign({}, defaultConfig, config)

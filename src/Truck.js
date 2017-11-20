@@ -7,7 +7,7 @@ const ModelFactory = require('./ModelFactory')
 /**
  * Default Options.
  *
- * @type {object}
+ * @type {Object}
  */
 const defaultOptions = {
     name: null,

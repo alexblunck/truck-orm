@@ -14,8 +14,8 @@ module.exports = function ModelFactory (options) {
         /**
          * Return new Model subclass instance
          *
-         * @param {object} data
-         * @param {object} [meta] - Data to add to "_truck" property
+         * @param {Object} data
+         * @param {Object} [meta] - Data to add to "_truck" property
          */
         constructor(data, meta) {
             super(options, meta, data)
@@ -26,7 +26,7 @@ module.exports = function ModelFactory (options) {
         /**
          * "option" getter
          *
-         * @return {object}
+         * @return {Object}
          */
         static get options() {
             return options
@@ -35,9 +35,9 @@ module.exports = function ModelFactory (options) {
         /**
          * Get option for specific key.
          *
-         * @param  {string} key
+         * @param  {String} key
          *
-         * @return {any}
+         * @return {Any}
          */
         static _option(key) {
             return this.options[key] || TruckConfig.get(key)

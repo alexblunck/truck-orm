@@ -11,10 +11,10 @@ module.exports = class ModelCollection {
     /**
      * Create new model collection instance.
      *
-     * @param {object} object
-     * @param {array}  object.data - Data to initialize the collection with
-     * @param {Model}  object.modelClass - Model class collection is made of
-     * @param {Model}  object.belongsTo - Model instance this collection belongs to
+     * @param {Object}           object
+     * @param {Array}            object.data       - Data to initialize the collection with
+     * @param {Model}            object.modelClass - Model class collection is made of
+     * @param {Model}            object.belongsTo  - Model instance this collection belongs to
      * @param {HasManyRelation}  object.relation
      */
     constructor({data, modelClass, belongsTo, relation}) {
@@ -27,7 +27,7 @@ module.exports = class ModelCollection {
     /**
      * Get all collection items.
      *
-     * @return {array}
+     * @return {Array}
      */
     all() {
         return this.items
@@ -36,7 +36,7 @@ module.exports = class ModelCollection {
     /**
      * Get item at specific index.
      *
-     * @param  {integer} index
+     * @param  {Number} index
      *
      * @return {Model}
      */
@@ -47,9 +47,9 @@ module.exports = class ModelCollection {
     /**
      * Lookup item by it's key.
      *
-     * @param  {any} keyValue
+     * @param  {Any} keyValue
      *
-     * @return {Model|void}
+     * @return {Model|null}
      */
     find(keyValue) {
         return this.findWhere(this.modelClass.options.key, keyValue)
@@ -58,11 +58,11 @@ module.exports = class ModelCollection {
     /**
      * Look up item by predicate.
      *
-     * @param  {string}     key
-     * @param  {any}        value
+     * @param  {String}     key
+     * @param  {Any}        value
      * @param  {Boolean}    ignoreCase
      *
-     * @return {Model|void}
+     * @return {Model|null}
      */
     findWhere(key, value, ignoreCase = false) {
         let predicate = {}
@@ -93,8 +93,8 @@ module.exports = class ModelCollection {
     /**
      * Look up item index by predicate.
      *
-     * @param  {string} key
-     * @param  {any} value
+     * @param  {String} key
+     * @param  {Any}    value
      *
      * @return {Model}
      */
@@ -109,7 +109,7 @@ module.exports = class ModelCollection {
      * Create a new model instance of the relation type &
      * add relation / collection meta data.
      *
-     * @param {object} [data] - Data to initialize model with
+     * @param  {Object} [data] - Data to initialize model with
      *
      * @return {Model}
      */
@@ -125,7 +125,7 @@ module.exports = class ModelCollection {
     /**
      * Append model to collection manually.
      *
-     * @param {Model} model
+     * @param  {Model} model
      *
      * @return {Model}
      */
@@ -141,8 +141,8 @@ module.exports = class ModelCollection {
      * collection with another one.
      *
      * @param  {Model}  model
-     * @param  {string} [key]   - Key used to determine what to replace
-     * @param  {string} [value] - Value that key is matched with
+     * @param  {String} [key]   - Key used to determine what to replace
+     * @param  {String} [value] - Value that key is matched with
      */
     replace(model, key, value) {
         key = key || this.modelClass._option('key')
@@ -159,7 +159,7 @@ module.exports = class ModelCollection {
     /**
      * Return true if collection is empty.
      *
-     * @return {boolean}
+     * @return {Boolean}
      */
     isEmpty() {
         return this.count() === 0
@@ -203,7 +203,7 @@ module.exports = class ModelCollection {
     /**
      * Delete model instance from "items" array.
      *
-     * @param  {Model} model
+     * @param {Model} model
      */
     delete(model) {
         const index = this.items.indexOf(model)
@@ -213,7 +213,7 @@ module.exports = class ModelCollection {
     /**
      * Proxy to items.map method.
      *
-     * @return {array}
+     * @return {Array}
      */
     map() {
         return this.items.map(...arguments)
@@ -224,9 +224,9 @@ module.exports = class ModelCollection {
      * from each item in collection & return
      * them in an array.
      *
-     * @param  {string} key
+     * @param  {String} key
      *
-     * @return {array}
+     * @return {Array}
      */
     pluck(key) {
         return map(this.items, key)
@@ -237,7 +237,7 @@ module.exports = class ModelCollection {
      *
      * @param  {Function} fn
      *
-     * @return {array}
+     * @return {Array}
      */
     filter(fn) {
         return this.items.filter(fn)
@@ -246,7 +246,7 @@ module.exports = class ModelCollection {
     /**
      * Populate "items" property with model instances.
      *
-     * @param {array} data
+     * @param {Array} data
      */
     _setData(data = []) {
         if (!isArray(data)) {

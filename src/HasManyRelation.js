@@ -10,11 +10,11 @@ module.exports = class HasManyRelation {
     /**
      * Create new has many relation instance.
      *
-     * @param {object} object
-     * @param {array}  object.data       - Data to initialize the collection with
+     * @param {Object} object
+     * @param {Array}  object.data       - Data to initialize the collection with
      * @param {Model}  object.modelClass - Model class collection is made of
      * @param {Model}  object.belongsTo  - Model instance this relation belongs to
-     * @param {object} object.options    - Extra options
+     * @param {Object} object.options    - Extra options
      */
     constructor({data, modelClass, belongsTo, options = {}}) {
         this.modelClass = modelClass
@@ -89,7 +89,7 @@ module.exports = class HasManyRelation {
     /**
      * Populate "items" property with model instances.
      *
-     * @param {array} data
+     * @param {Array} data
      */
     _setData(data) {
         this.collection = new ModelCollection({

@@ -8,8 +8,8 @@ module.exports = class HasOneRelation {
     /**
      * Create new has one relation instance.
      *
-     * @param {object} object
-     * @param {array}  object.data       - Data to initialize model instance with
+     * @param {Object} object
+     * @param {Array}  object.data       - Data to initialize model instance with
      * @param {Model}  object.modelClass - Model class of the relation
      * @param {Model}  object.belongsTo  - Model instance this relation belongs to
      */
@@ -23,9 +23,9 @@ module.exports = class HasOneRelation {
     /**
      * Get model or model property value.
      *
-     * @param {string} [key] - Key iof property to get
+     * @param  {String} [key] - Key iof property to get
      *
-     * @return {Model|any}
+     * @return {Model|Any}
      */
     get(key) {
         return key ? this.model[key] : this.model
@@ -34,7 +34,7 @@ module.exports = class HasOneRelation {
     /**
      * Attach an existing model manually.
      *
-     * @param  {Model} model
+     * @param {Model} model
      */
     attach(model) {
         this.model = model
@@ -52,7 +52,7 @@ module.exports = class HasOneRelation {
     /**
      * Return true if relation has an actual model.
      *
-     * @return {boolean}
+     * @return {Boolean}
      */
     exists() {
         return !!this.model
@@ -84,7 +84,7 @@ module.exports = class HasOneRelation {
     /**
      * Populate "model" property with model instance.
      *
-     * @param {object} data
+     * @param {Object} data
      */
     _setData(data) {
         if (data) {

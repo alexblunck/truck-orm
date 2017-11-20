@@ -17,9 +17,9 @@ module.exports = class Model {
     /**
      * Create Model instance
      *
-     * @param {object} options
-     * @param {object} [meta] - Data to add to "_truck" property
-     * @param {object} data
+     * @param {Object} options
+     * @param {Object} [meta]  - Data to add to "_truck" property
+     * @param {Object} data
      */
     constructor(options, meta = {}, data) {
         this._truck = Object.assign({
@@ -36,7 +36,7 @@ module.exports = class Model {
     /**
      * Retrieve model with a specific id.
      *
-     * @param  {integer} [id]
+     * @param  {Number} [id]
      *
      * @return {Promise} Resolves to Model instance
      */
@@ -75,7 +75,7 @@ module.exports = class Model {
      * Create a new collection with optional
      * data.
      *
-     * @param  {Array}  [data] - Data to initialize collection with
+     * @param  {Array} [data] - Data to initialize collection with
      *
      * @return {ModelCollection}
      */
@@ -117,7 +117,7 @@ module.exports = class Model {
     /**
      * Update multiple fields on the model instance.
      *
-     * @param  {Object|array} fields
+     * @param  {Object|Array} fields
      *
      * @return {Promise} Resolves to model instance
      */
@@ -192,11 +192,11 @@ module.exports = class Model {
     /**
      * Update a single field on the model instance.
      *
-     * @param  {String}  key     - Key of property / field to update
+     * @param  {String} key      - Key of property / field to update
      * @param  {Any}    [value]  - Updated value
      * @param  {Object} [append] - Additional data to append to request body
      *
-     * @return {Promise} Resolves to Model instance
+     * @return {Promise} Resolves to model instance
      */
     $sync(key, value, append = {}) {
         const url = urljoin(this._apiUrl(), 'sync')
@@ -247,9 +247,9 @@ module.exports = class Model {
     /**
      * Get a clone of the model instance.
      *
-     * @param {boolean} preserveRelations - Keep references to relation / collection
-     * @param {boolean} preserveKey - Keep primary key value
-     * @param {boolean} offline - Create an offline clone that doesn't make actual network requests
+     * @param  {Boolean} preserveRelations - Keep references to relation / collection
+     * @param  {Boolean} preserveKey       - Keep primary key value
+     * @param  {Boolean} offline           - Create an offline clone that doesn't make actual network requests
      *
      * @return {Model}
      */
@@ -278,8 +278,8 @@ module.exports = class Model {
      * Get a clone of the model instances, that doesn't make any
      * actual network requests.
      *
-     * @param  {boolean} preserveRelations - Keep references to relation / collection
-     * @param  {boolean} preserveKey - Keep primary key value
+     * @param  {Boolean} preserveRelations - Keep references to relation / collection
+     * @param  {Boolean} preserveKey       - Keep primary key value
      *
      * @return {Model}
      */
@@ -297,7 +297,7 @@ module.exports = class Model {
      *
      * @param  {Model} model
      *
-     * @return {boolean} True if data is equal
+     * @return {Boolean} True if data is equal
      */
     equals(model) {
         return isEqual(this.toObject(), model.toObject())
@@ -308,7 +308,7 @@ module.exports = class Model {
      *
      * @param  {Model}  model
      *
-     * @return {boolean}
+     * @return {Boolean}
      */
     is(model) {
         return this._truck.localId === model._truck.localId
@@ -328,7 +328,7 @@ module.exports = class Model {
     /**
      * Return true if model instance is offline.
      *
-     * @return {boolean}
+     * @return {Boolean}
      */
     isOffline() {
         return this._truck.offline
@@ -337,7 +337,7 @@ module.exports = class Model {
     /**
      * Get unique local id of this instance.
      *
-     * @return {string}
+     * @return {String}
      */
     localId() {
         return this._truck.localId
@@ -346,7 +346,7 @@ module.exports = class Model {
     /**
      * Return model instance in pure object form.
      *
-     * @return {object}
+     * @return {Object}
      */
     toObject({ includeRelations = true } = {}) {
         let obj = {}
@@ -481,9 +481,9 @@ module.exports = class Model {
      * Get the default value for a specific field. If
      * the value is a function it is called.
      *
-     * @param  {string} field
+     * @param  {String} field
      *
-     * @return {any}
+     * @return {Any}
      */
     _defaultFieldValue(field) {
         const value = this._option('defaults')[field]
@@ -503,7 +503,7 @@ module.exports = class Model {
      * Get api path for model instance, takes into account
      * relations.
      *
-     * @return {string}
+     * @return {String}
      */
     _apiPath() {
         const o = this._option.bind(this)
@@ -531,7 +531,7 @@ module.exports = class Model {
      * Get complete api url for model instance including
      * host.
      *
-     * @return {string}
+     * @return {String}
      */
     _apiUrl() {
         return urljoin(this._option('api'), this._apiPath())
@@ -540,7 +540,7 @@ module.exports = class Model {
     /**
      * Get model instance primary key value.
      *
-     * @return {string}
+     * @return {String}
      */
     _key() {
         return this[this._option('key')]
@@ -549,7 +549,7 @@ module.exports = class Model {
     /**
      * Call a specific event handler if defined.
      *
-     * @param  {string} event - Handler to call
+     * @param  {String} event - Handler to call
      */
     _callEventHandler(event) {
         const handlers = this._option('events')
