@@ -1,7 +1,7 @@
 {
-  "name": "truck-orm",
-  "version": "0.0.1",
-  "description": "An ORM for the front end.",
+  "name": "@blunck/truck-orm",
+  "version": "0.1.0",
+  "description": "An ORM for the front end",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -21,7 +21,15 @@
     "url": "https://github.com/alexblunck/truck-orm/issues"
   },
   "homepage": "https://github.com/alexblunck/truck-orm#readme",
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "shortid": "^2.2.8",
+    "url-join": "^2.0.2"
+  },
   "devDependencies": {
     "eslint": "^4.11.0"
+  },
+  "peerDependencies": {
+    "angular": "^1.6.6"
   }
 }
