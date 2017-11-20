@@ -1,7 +1,11 @@
 # truck-orm
-An ORM for the front end.
+An ORM for the front end
 
-**Required npm dependencies**
-- `lodash`
-- `shortid`
-- `url-join`
+## Installation
+
+```bash
+npm i @blunck/truck-orm
+```
+
+## Caveats
+Currently truck-orm has a peer dependency of `angular`. This will be removed in later versions.
