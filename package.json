@@ -27,7 +27,7 @@
     "url-join": "^2.0.2"
   },
   "devDependencies": {
-    "eslint": "^4.13.0"
+    "eslint": "^4.13.1"
   },
   "peerDependencies": {
     "angular": "^1.6.6"
