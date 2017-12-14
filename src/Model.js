@@ -59,8 +59,8 @@ module.exports = class Model {
      *
      * @return {Promise} Resolves to ModelCollection instance
      */
-    static $all() {
-        const url = urljoin(this._option('api'), this._option('name'), 'all')
+    static $index() {
+        const url = urljoin(this._option('api'), this._option('name'))
 
         return NetworkRequest.$get(url)
             .then(data => {
