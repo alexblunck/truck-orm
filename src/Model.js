@@ -497,7 +497,9 @@ module.exports = class Model {
     _defaultFieldValue(field) {
         const value = this._option('defaults')[field]
 
-        if (isFunction(value)) {
+        if (isString(value)) {
+            return value
+        } else if (isFunction(value)) {
             return value.call(this)
         } else if (value) {
             return cloneDeep(value)
