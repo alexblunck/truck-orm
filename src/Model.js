@@ -531,9 +531,13 @@ module.exports = class Model {
             }
         }
 
+        path = urljoin(path, o('name'))
+
         const key = o('dropKey') ? null : this._key()
 
-        path = urljoin(path, o('name'), key)
+        if (key) {
+            path = urljoin(path, key)
+        }
 
         return path
     }
