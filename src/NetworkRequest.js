@@ -3,38 +3,20 @@
  * NetworkRequest
  */
 
+const axios = require('axios')
+
 /**
- * Default $http config.
+ * Request config.
  *
  * @type {Object}
  */
-const defaultConfig = {
+const config = {
     headers: {
         'Accept': 'application/json'
     }
 }
 
 module.exports = class NetworkRequest {
-
-    /**
-     * Get $http angular service from angular app
-     * bootstrapped on <html> tag.
-     *
-     * @return {$http}
-     */
-    static get $http() {
-        return window.angular.element(document).injector().get('$http')
-    }
-
-    /**
-     * Get $q angular service from angular app
-     * bootstrapped on <html> tag.
-     *
-     * @return {$http}
-     */
-    static get $q() {
-        return window.angular.element(document).injector().get('$q')
-    }
 
     /**
      * Make GET request.
@@ -44,7 +26,7 @@ module.exports = class NetworkRequest {
      * @return {Promise}
      */
     static $get(url) {
-        return this.$http.get(url, this.buildConfig())
+        return axios.get(url, config)
             .then(res => {
                 return res.data
             })
@@ -61,10 +43,10 @@ module.exports = class NetworkRequest {
      */
     static $post(url, data, offline = false) {
         if (offline) {
-            return this.$q.resolve(data)
+            return Promise.resolve(data)
         }
 
-        return this.$http.post(url, data, this.buildConfig())
+        return axios.post(url, data, config)
             .then(res => {
                 return res.data
             })
@@ -81,10 +63,10 @@ module.exports = class NetworkRequest {
      */
     static $put(url, data, offline = false) {
         if (offline) {
-            return this.$q.resolve(data)
+            return Promise.resolve(data)
         }
 
-        return this.$http.put(url, data, this.buildConfig())
+        return axios.put(url, data, config)
             .then(res => {
                 return res.data
             })
@@ -100,25 +82,13 @@ module.exports = class NetworkRequest {
      */
     static $delete(url, offline = false) {
         if (offline) {
-            return this.$q.resolve()
+            return Promise.resolve()
         }
 
-        return this.$http.delete(url, this.buildConfig())
+        return axios.delete(url, config)
             .then(res => {
                 return res.data
             })
-    }
-
-    /**
-     * Build $http config by combining passed in
-     * object with default values.
-     *
-     * @param  {Object} [config]
-     *
-     * @return {Object}
-     */
-    static buildConfig(config = {}) {
-        return Object.assign({}, defaultConfig, config)
     }
 
 }
