@@ -245,6 +245,15 @@ module.exports = class Model {
     }
 
     /**
+     * Update instance properties.
+     *
+     * @param {Object} data
+     */
+    fill(data) {
+        this._setData(data)
+    }
+
+    /**
      * Get a clone of the model instance.
      *
      * @param  {Boolean} preserveRelations - Keep references to relation / collection
