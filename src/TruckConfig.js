@@ -2,10 +2,21 @@
  * TruckConfig
  */
 
+const { HttpConfig } = require('@blunck/http')
+
 class TruckConfig {
 
     constructor() {
         this.options = {}
+    }
+
+    /**
+     * Set JWT token getter function.
+     *
+     * @param {Function} fn - Expected jwt token as string
+     */
+    setJwtTokenGetter(fn) {
+        HttpConfig.setJwtTokenGetter(fn)
     }
 
     /**

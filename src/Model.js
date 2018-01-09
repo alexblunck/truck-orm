@@ -6,8 +6,9 @@
 const { cloneDeep, each, isArray, isDate, isEqual, isFunction, isPlainObject, isString, isUndefined, keys } = require('lodash')
 const shortid = require('shortid')
 const urljoin = require('url-join')
+const { Http } = require('@blunck/http')
+
 const Util = require('./Util')
-const NetworkRequest = require('./NetworkRequest')
 const ModelCollection = require('./ModelCollection')
 const HasManyRelation = require('./HasManyRelation')
 const HasOneRelation = require('./HasOneRelation')
@@ -43,14 +44,14 @@ module.exports = class Model {
     static $find(id) {
         const url = urljoin(this._option('api'), this._option('name'), id)
 
-        return NetworkRequest.$get(url)
-            .then(data => {
-                if (!data) {
+        return Http.get(url)
+            .then(res => {
+                if (!res.data) {
                     Util.log('Model', '$find', `"${url}" returned no data.`)
                     return null
                 }
 
-                return new this(data)
+                return new this(res.data)
             })
     }
 
@@ -62,10 +63,10 @@ module.exports = class Model {
     static $index() {
         const url = urljoin(this._option('api'), this._option('name'))
 
-        return NetworkRequest.$get(url)
-            .then(data => {
+        return Http.get(url)
+            .then(res => {
                 return new ModelCollection({
-                    data: data,
+                    data: res.data,
                     modelClass: this
                 })
             })
@@ -97,16 +98,16 @@ module.exports = class Model {
      */
     $save({ includeRelations = false, append = {} } = {}) {
         const url = this._apiUrl()
-        const method = this[this._option('key')] ? '$put' : '$post'
+        const method = this[this._option('key')] ? 'put' : 'post'
         const modelObject = this.toObject({ includeRelations })
         const data = Object.assign(modelObject, append)
 
-        return NetworkRequest[method](url, data, this.isOffline())
-            .then(data => {
-                this._setData(data)
+        return Http[method](url, data, null, { offline: this.isOffline() })
+            .then(res => {
+                this._setData(res.data)
 
                 // If model belongs to collection, replace it on update
-                if (method === '$put' && this._truck.collection) {
+                if (method === 'put' && this._truck.collection) {
                     this._truck.collection.replace(this)
                 }
 
@@ -133,9 +134,9 @@ module.exports = class Model {
             })
         }
 
-        return NetworkRequest.$put(url, data, this.isOffline())
-            .then(data => {
-                this._setData(data)
+        return Http.put(url, data, null, { offline: this.isOffline() })
+            .then(res => {
+                this._setData(res.data)
 
                 return this
             })
@@ -153,13 +154,13 @@ module.exports = class Model {
     $post(ext, data, immutable = false) {
         const url = urljoin(this._apiUrl(), ext)
 
-        return NetworkRequest.$post(url, data, this.isOffline())
-            .then(data => {
+        return Http.post(url, data, null, { offline: this.isOffline() })
+            .then(res => {
                 if (immutable) {
-                    return data
+                    return res.data
                 }
 
-                this._setData(data)
+                this._setData(res.data)
 
                 return this
             })
@@ -177,13 +178,13 @@ module.exports = class Model {
     $put(ext, data, immutable = false) {
         const url = urljoin(this._apiUrl(), ext)
 
-        return NetworkRequest.$put(url, data, this.isOffline())
-            .then(data => {
+        return Http.put(url, data, null, { offline: this.isOffline() })
+            .then(res => {
                 if (immutable) {
-                    return data
+                    return res.data
                 }
 
-                this._setData(data)
+                this._setData(res.data)
 
                 return this
             })
@@ -206,10 +207,10 @@ module.exports = class Model {
             value: !isUndefined(value) ? value : this[key]
         }, append)
 
-        return NetworkRequest.$put(url, data, this.isOffline())
-            .then(data => {
+        return Http.put(url, data, null, { offline: this.isOffline() })
+            .then(res => {
                 if (!isUndefined(value)) {
-                    this[key] = data[key]
+                    this[key] = res.data[key]
                 }
 
                 return this
@@ -232,7 +233,7 @@ module.exports = class Model {
             this._callEventHandler('didDelete')
         }
 
-        return NetworkRequest.$delete(url, this.isOffline())
+        return Http.delete(url, null, { offline: this.isOffline() })
             .then(() => {
                 // Delete from possible relation
                 if (!optimistic) {
