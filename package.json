@@ -23,7 +23,7 @@
   "homepage": "https://github.com/alexblunck/truck-orm#readme",
   "dependencies": {
     "@blunck/http": "1.2.0",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.5",
     "shortid": "^2.2.8",
     "url-join": "2.0.4"
   },
