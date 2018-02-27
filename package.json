@@ -1,6 +1,6 @@
 {
   "name": "@blunck/truck-orm",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "An ORM for the front end",
   "main": "index.js",
   "scripts": {
