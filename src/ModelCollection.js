@@ -206,7 +206,15 @@ module.exports = class ModelCollection {
      * @param {Model} model
      */
     delete(model) {
-        const index = this.items.indexOf(model)
+        // Look up item by its primary key
+        const item = this.find(model._key())
+        const index = this.items.indexOf(item)
+
+        if (index === -1) {
+            Util.log('ModelCollection', 'delete', 'Model couldn\'t be found in collection.')
+            return
+        }
+
         this.items.splice(index, 1)
     }
 
